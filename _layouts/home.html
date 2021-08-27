@@ -4,11 +4,84 @@ layout: default
 <main>
 <ul>
     {% for post in site.posts %}
-    <li>
-        <img class="lazy" data-src="{{ post.image | prepend:'/' | prepend:site.url }}">
-        <a href="{{ post.url }}">{{ post.title }} {{ post.approx_date | date: "%B, %Y" }}</a>
-        {{ post.content }}
+    <li class="card">
+        <div class="card-body" data-bs-toggle="modal" data-bs-target="#eventDetails" data-bs-target="#eventDetails" data-bs-url="{{ post.url }}">
+            {% if post.image %}
+            <figure>
+                <img class="lazy img-small" data-src="{{ post.image | prepend:'/' | prepend:site.url }}">
+                <figcaption>{{ post.title }} - {{ post.approx_date | date: "%B, %Y" }}</figcaption>
+            </figure>
+            {% else %}
+            <p class="card-text">{{ post.content | truncate:200 }}</p>
+            {% endif %}
+        </div>
+        <a href="#{{ post.title }}">{{ post.title }} {{ post.approx_date | date: "%B, %Y" }}</a>
     </li>
     {% endfor %}
 </ul>
 </main>
+
+
+<div class="modal fade" id="eventDetails" tabindex="-1" aria-labelledby="eventDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventDetailsLabel">Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var exampleModal = document.getElementById('eventDetails')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        let postUrl = button.getAttribute('data-bs-url')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+
+        var modalTitle = exampleModal.querySelector('.modal-title')
+        var modalBodyInput = exampleModal.querySelector('.modal-body')
+
+        var request = new XMLHttpRequest();
+        request.open('GET', postUrl, true);
+
+        request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var data = JSON.parse(this.response);
+            console.log(data);
+            modalTitle.textContent = data.title;
+            if (data.image) {
+                modalBodyInput.innerHTML = 
+                    `<img class="img-fluid" src="${ data.image }">
+                    <p>${ data.description }</p>`;
+            } else {
+                modalBodyInput.innerHTML = 
+                    `${ data.description }`;
+            }
+          } else {
+            // We reached our target server, but it returned an error
+            console.log('aaaaa');
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+    });
+});
+</script>

@@ -1,0 +1,9 @@
+---
+layout: none
+---
+{
+    "title": "{{ page.title }}",
+    "approx_date": "{{ page.approx_date | date: "%B, %Y" }}",
+    "description": {{ page.content | markdownify | jsonify | strip }},
+    "image": "{{ page.image }}"
+}
