@@ -1,25 +1,40 @@
 ---
 layout: default
 ---
-<main>
-<ul>
-    {% for post in site.posts %}
-    <li class="card">
-        <div class="card-body" data-bs-toggle="modal" data-bs-target="#eventDetails" data-bs-target="#eventDetails" data-bs-url="{{ post.url }}">
-            {% if post.image %}
-            <figure>
-                <img class="lazy img-small" data-src="{{ post.image | prepend:'/' | prepend:site.url }}">
-                <figcaption>{{ post.title }} - {{ post.approx_date | date: "%B, %Y" }}</figcaption>
-            </figure>
-            {% else %}
-            <p class="card-text">{{ post.content | truncate:200 }}</p>
-            {% endif %}
+<div class="light container mb-5 mt-4">
+    <h1 class="text-center">Doyle F. Kisler Memorial</h1>
+    <h3 class="text-center">July 11, 1946 - August 21, 2021</h2>
+</div>
+
+<div class="container mb-5">
+    <p class="lead pb-3 pt-3 ps-3 pe-3 rounded">This could be a preamble that discusses his life.  Maybe use an expanded biography?</p>
+</div>
+
+<main class="container mb-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in site.posts reversed %}
+        <div class="col">
+            <div class="card h-100">
+                {% if post.image %}
+                <img class="lazy card-img-top" data-src="{{ post.image | prepend:'/' | prepend:site.url }}" data-bs-toggle="modal" data-bs-target="#eventDetails" data-bs-target="#eventDetails" data-bs-url="{{ post.url }}">
+                {% endif %}
+                <div class="card-body" data-bs-toggle="modal" data-bs-target="#eventDetails" data-bs-target="#eventDetails" data-bs-url="{{ post.url }}">
+                    <div class="card-title">{{ post.title }} - {{ post.approx_date | date: "%B, %Y" }}</div>
+                    {% if post.image %}
+                    {% else %}
+                    <p class="card-text">{{ post.content | truncate:200 }}</p>
+                    {% endif %}
+                </div>
+                <a href="#{{ post.title }}">{{ post.title }} {{ post.approx_date | date: "%B, %Y" }}</a>
+            </div>
         </div>
-        <a href="#{{ post.title }}">{{ post.title }} {{ post.approx_date | date: "%B, %Y" }}</a>
-    </li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </div>
 </main>
+
+<div class="container light">
+    <h6 class="text-end">Have something to add?  Please email me at: ikisler ~at~ csumb dot edu</h6>
+</div>
 
 
 <div class="modal fade" id="eventDetails" tabindex="-1" aria-labelledby="eventDetailsLabel" aria-hidden="true">
