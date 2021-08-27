@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<main>
+<ul>
+    {% for post in site.posts %}
+    <li>
+        <img class="lazy" data-src="{{ post.image | prepend:'/' | prepend:site.url }}">
+        <a href="{{ post.url }}">{{ post.title }} {{ post.approx_date | date: "%B, %Y" }}</a>
+        {{ post.content }}
+    </li>
+    {% endfor %}
+</ul>
+</main>
