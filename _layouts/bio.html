@@ -1,0 +1,80 @@
+<style type="text/css">
+    .bio {
+        background-color: #fff;
+#        max-height: 300px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bio .read-more { 
+        position: absolute; 
+        bottom: 0; 
+        left: 0;
+        width: 100%; 
+        text-align: center; 
+        margin: 0; padding: 30px 0; 
+        
+        /* "transparent" only works here because == rgba(0,0,0,0) */
+        background-image: linear-gradient(to bottom, transparent, #2B2E43);
+    }
+
+    .bio-contract {
+        max-height: 300px;
+    }
+
+    .bio-expand {
+        max-height: 9999px;
+        transition: max-height 5000ms;
+    }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let btn = document.querySelectorAll('.bio .read-more')[0];
+    let root = document.querySelectorAll('.bio')[0];
+    let rootStyle = getComputedStyle(root, null);
+
+    btn.addEventListener('click', function() {
+        btn.classList.add('hide');
+        btn.classList.remove('show');
+
+        root.classList.add('bio-expand');
+        root.classList.remove('bio-contract');
+//        root.style.maxHeight = 9999 + 'px';
+//        root.style.height = parseFloat(rootStyle.height.replace("px", "")) + 'px';
+//        root.style.height = '';
+        return false;
+    });
+});
+</script>
+<div class="container mb-5 bio bio-contract pb-3 pt-3 ps-3 pe-3 rounded">
+    <h2 class="text-center fst-italic">A lifetime of curiosity</h2>
+    <p class="lead pb-3 pt-3 ps-3 pe-3">
+        Born in 1946 to Floyd and Erlynn Kisler, from an early age Doyle possessed a great excitement about technology and science. While he spent much of his life designing servo machinery used to create and perfect computer technology, his passions were often wrapped up in photography, radio, and human flight.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        In his youth, he worked selling cameras at a department store, which began a lifelong passion for photography. In these years he discovered the nefarious humor of misusing flashbulbs, which he leveraged into the special effects of the movie he and his friends made using his then-cutting-edge Super 8mm camera.
+    </p>
+    <p class="read-more show"><a href="#" class="btn btn-light">Read More</a></p>
+    <p class="lead pb-3 ps-3 pe-3">
+        After joining the United States Navy, his skills flourished as an electrical engineer repairing systems for aircraft and anti-submarine warfare. Serving with VS-38, the “Red Griffins,” he sailed on the aircraft carriers USS Bennington, USS Hornet, and USS Ticonderoga, the last two carriers being tasked with recovering crew capsules returning from the Apollo missions.
+    <p class="lead pb-3 ps-3 pe-3">
+        While in the States, he never missed an opportunity to get on an airplane, traveling across the nation, sometimes not knowing where the next flight would take him. It was during these years that he became friends with Jim and Steve Mikelich, eventually meeting and marrying their sister Carol, the love of his life.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        For over fifty years, Doyle and Carol shared their lives, they raised their five children, played softball, traveled the country to see far-flung relatives, museums, and landmarks, and enjoyed dining together by the ocean.
+    <p class="lead pb-3 ps-3 pe-3">
+        His years in the navy set the framework for his career as an innovative engineer during an era of new and explosive growth in computer technology and manufacturing, where he helped to form the building blocks for the information age we live in today. He took great pride in his work, and found it hard to put down even after retiring.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        He also became active in amateur radio, and helped nurture local radio groups and emergency response support, teaching new radio enthusiasts what he himself had learned many years previously, forging new friendships using the technology that he had started with.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        As a father, Doyle treasured watching his children explore the world. He enjoyed taking them to the Moffat Field air shows, the aquarium, aviation museums, and on cross-country trips through the colorful deserts of the southwest to visit his sister’s families and his parents in Texas. Later, he sought to do the same with his grandchildren, and was an active part of their lives up through his final days.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        He departed on August 21, 2021, and is survived by his wife, his five children, and six grandchildren.
+    </p>
+    <p class="lead pb-3 ps-3 pe-3">
+        His last wishes were to spend a day out at the beach with his family, talking and joking and watching the grandchildren play. Later, he wanted to walk up the stairs to his HAM radio set at 3PM, pick up the handset and say into the ether “This is Doyle. Is anyone out there?”
+    </p>
+</div>
