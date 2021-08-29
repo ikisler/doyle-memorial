@@ -1,0 +1,32 @@
+<style type="text/css">
+    .bio .read-more { 
+        /* "transparent" only works here because == rgba(0,0,0,0) */
+        background-image: linear-gradient(to bottom, transparent, #2B2E43);
+    }
+
+    .bio-contract {
+        max-height: 300px;
+    }
+
+    .bio-expand {
+        max-height: 9999px;
+        transition: max-height 5000ms;
+    }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let btn = document.querySelectorAll('.bio .read-more')[0];
+    btn.classList.remove('hide');
+    let root = document.querySelectorAll('.bio')[0];
+    let rootStyle = getComputedStyle(root, null);
+
+    btn.addEventListener('click', function() {
+        btn.classList.add('hide');
+        btn.classList.remove('show');
+
+        root.classList.add('bio-expand');
+        root.classList.remove('bio-contract');
+        return false;
+    });
+});
+</script>

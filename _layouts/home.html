@@ -1,12 +1,11 @@
 ---
 layout: default
 ---
-<div class="light container mb-5 mt-4">
-    <h1 class="text-center">Doyle F. Kisler Memorial</h1>
-    <h3 class="text-center">July 11, 1946 - August 21, 2021</h3>
-</div>
+{% include_relative _layouts/header.html %}
 
 {% include_relative _layouts/bio.html %}
+
+{% include_relative _layouts/bioExpand.html %}
 
 <main class="container mb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">

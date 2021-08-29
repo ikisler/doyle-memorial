@@ -11,35 +11,13 @@
         left: 0;
         width: 100%; 
         text-align: center; 
-        margin: 0; padding: 30px 0; 
-        
-        /* "transparent" only works here because == rgba(0,0,0,0) */
-        background-image: linear-gradient(to bottom, transparent, #2B2E43);
-    }
-
-    .bio-contract {
-        max-height: 300px;
-    }
-
-    .bio-expand {
-        max-height: 9999px;
-        transition: max-height 5000ms;
+        margin: 0; padding: 30px 0;
     }
 </style>
-<script>
+<script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
     let btn = document.querySelectorAll('.bio .read-more')[0];
-    let root = document.querySelectorAll('.bio')[0];
-    let rootStyle = getComputedStyle(root, null);
-
-    btn.addEventListener('click', function() {
-        btn.classList.add('hide');
-        btn.classList.remove('show');
-
-        root.classList.add('bio-expand');
-        root.classList.remove('bio-contract');
-        return false;
-    });
+    btn.classList.add('hide');
 });
 </script>
 <div class="container mb-5 bio bio-contract pb-3 pt-3 ps-3 pe-3 rounded">
