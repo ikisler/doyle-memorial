@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Doyle Kisler Memorial</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+    <style type="text/css">
+    img.img-small {
+        max-height:300px;
+        max-width:300px;
+        height:auto;
+        width:auto;
+    }
+    body {
+        background-color: #2B2E43 !important;
+    }
+
+    .light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+        color: #ddd;
+    }
+
+    .show {
+        transition: display 400ms;
+    }
+
+    .hide {
+        transition: display 400ms;
+        display: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant Garamond', serif;
+    }
+
+    body {
+        font-family: 'EB Garamond', serif;
+    }
+    </style>
+</head>
+<body>
+{{ content }}
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyloadImages = document.querySelectorAll("img.lazy");    
+    var lazyloadThrottleTimeout;
+
+    function lazyload () {
+        if(lazyloadThrottleTimeout) {
+            clearTimeout(lazyloadThrottleTimeout);
+        }    
+
+        lazyloadThrottleTimeout = setTimeout(function() {
+            var scrollTop = window.pageYOffset;
+            lazyloadImages.forEach(function(img) {
+                if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                }
+            });
+            if(lazyloadImages.length == 0) {
+                document.removeEventListener("scroll", lazyload);
+                window.removeEventListener("resize", lazyload);
+                window.removeEventListener("orientationChange", lazyload);
+            }
+        }, 20);
+    }
+
+    document.addEventListener("scroll", lazyload);
+    window.addEventListener("resize", lazyload);
+    window.addEventListener("orientationChange", lazyload);
+    lazyload();
+});
+</script>
+</html>
