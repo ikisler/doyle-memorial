@@ -1,5 +1,42 @@
 ---
 layout: default
 ---
+<style type="text/css">
+    .content {
+        background-color: #fff;
+    }
 
-<h1>TEST PAGE SORRY</h1>
+    #funeral-vid {
+        max-width: 100%;
+    }
+</style>
+<div class="container content mb-5 pb-3 pt-3 ps-3 pe-3 rounded text-center">
+    <video id="funeral-vid" class="video-js vjs-big-play-centered" controls>
+        <source src="https://funeral-video.sfo3.cdn.digitaloceanspaces.com/090221%20Highres-1-1080p.m4v" type="video/mp4" label="1080P">
+        <source src="https://funeral-video.sfo3.cdn.digitaloceanspaces.com/090221%20Highres-1-720p.m4v" type="video/mp4" label="720P" selected="true">
+        <source src="https://funeral-video.sfo3.cdn.digitaloceanspaces.com/090221%20Highres-1-480p.m4v" type="video/mp4" label="480P">
+    </video>
+
+    <div>
+        <h2 class="mt-5 text-center">Eulogy Transcript</h2>
+        <p class="lead pb-3 pt-3 ps-3 pe-3">
+        </p>
+    </div>
+</div>
+<script src="https://vjs.zencdn.net/7.15.4/video.min.js" integrity="sha384-DFkgIaXzcTx/JxmlGldNlivE/sea2qY1/ey2voYT07UjC91+4pbBuTkIqGFk/Fob" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector@1.2.5/dist/js/silvermine-videojs-quality-selector.min.js" integrity="sha384-jYWAw6jxNGNqgwNqYasVeB+5P3PhEChCqI8SB2XRYXXzpXl2z7XLjiVaaAOtvic2" crossorigin="anonymous"></script>
+<script type="text/javascript">
+let options = {
+   controlBar: {
+      children: [
+         'playToggle',
+         'progressControl',
+         'volumePanel',
+         'qualitySelector',
+         'fullscreenToggle',
+      ],
+   }
+};
+
+let player = videojs('funeral-vid', options);
+</script>
